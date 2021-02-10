@@ -2,9 +2,32 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/vueblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/vueblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: paulro
+
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
 
+shiro-redis:
+  enabled:
+  redis-manager:
+    host: 127.0.0.1:6379
+
+veublog:
+  jwt:
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    expire: 604800 # a week
+    header: Authorization
+
+logging:
+  level:
+    com.example.vueblog.controller: debug
+
+### Session过期时间（秒）
+session:
+  redis:
+    expireTime: 3600
+
+server:
+  port: 8081

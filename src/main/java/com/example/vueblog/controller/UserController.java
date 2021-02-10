@@ -1,13 +1,12 @@
 package com.example.vueblog.controller;
 
 
+import com.example.vueblog.common.lang.Result;
 import com.example.vueblog.entity.User;
 import com.example.vueblog.service.IUserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -21,15 +20,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    private final IUserService iUserService;
+    private final IUserService userService;
 
-    public UserController(IUserService iUserService) {
-        this.iUserService = iUserService;
+    public UserController(IUserService userService) {
+        this.userService = userService;
     }
 
+    @RequiresAuthentication
     @GetMapping({"/{id}"})
-    User getUserById(@PathVariable Long id) {
-        return iUserService.getById(id);
+    public Result getUserById(@PathVariable Long id) {
+
+        User user = userService.getById(id);
+        return Result.succ(user);
+    }
+
+    @PostMapping("/save")
+    public Result save(@Validated @RequestBody User user) {
+        return Result.succ(user);
     }
 
 }
