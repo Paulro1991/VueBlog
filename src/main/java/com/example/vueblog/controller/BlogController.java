@@ -39,7 +39,7 @@ public class BlogController {
         return Result.succ(pageData);
     }
 
-    @GetMapping({"/blog/{id}"})
+    @GetMapping({"/blogs/{id}"})
     public Result detail(@PathVariable Long id) {
         Blog blog = blogService.getById(id);
         Assert.notNull(blog, "该博客已被删除");
@@ -48,7 +48,7 @@ public class BlogController {
     }
 
     @RequiresAuthentication
-    @PostMapping("/blog/edit")
+    @PostMapping("/blogs/edit")
     public Result edit(@Validated @RequestBody Blog blog) {
         Blog temp;
 
