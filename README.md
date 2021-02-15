@@ -32,5 +32,5 @@
 * 其它
   * [lombok](https://projectlombok.org/setup/maven)
   `注释简化POJO工具包`
-  *[Hutool](https://github.com/looly/hutool)
+  * [Hutool](https://github.com/looly/hutool)
   `Java工具类库`
