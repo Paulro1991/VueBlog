@@ -20,10 +20,6 @@ veublog:
     expire: 604800 # a week
     header: Authorization
 
-logging:
-  level:
-    com.example.vueblog.controller: debug
-
 ### Session过期时间（秒）
 session:
   redis:
